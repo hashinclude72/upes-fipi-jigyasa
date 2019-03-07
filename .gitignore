@@ -4,6 +4,8 @@ myvenv
 db.sqlite3
 /static
 .DS_Store
+*.pyo
+*.mo
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
