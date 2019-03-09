@@ -21,9 +21,10 @@ def home(request):
 
 def payment(request):
     user = request.user
+    settings.USER = user
     # request.session.flush()
     # request.session.set_test_cookie()
-    request.session['userid'] = user.id
+    # request.session['userid'] = user.id
     # settings.USER = user
     MERCHANT_KEY = settings.PAYTM_MERCHANT_KEY
     MERCHANT_ID = settings.PAYTM_MERCHANT_ID
@@ -87,8 +88,8 @@ def response(request):
         # user = request.POST.get('user')
 
         verify = Checksum.verify_checksum(data_dict, MERCHANT_KEY, data_dict['CHECKSUMHASH'])
-        user_idd = request.session['userid']
-        user = User.objects.get(id=user_idd)
+        # user_idd = request.session['userid']
+        # user = User.objects.get(id=user_idd)
         # user = SimpleLazyObject.user
 
         # for key in request.POST:
@@ -97,7 +98,15 @@ def response(request):
             # user = User.objects.get(id=request.user.id)
             # user.paytm_history( **data_dict)
             # user.paytm_history.save()
-            Paytm_history.objects.create(user=user, **data_dict)
+            for key in request.POST:
+                if key == "BANKTXNID" or key == "RESPCODE":
+                    if request.POST[key]:
+                        data_dict[key] = int(request.POST[key])
+                    else:
+                        data_dict[key] = 0
+                elif key == "TXNAMOUNT":
+                    data_dict[key] = float(request.POST[key])
+            Paytm_history.objects.create(user=settings.USER, **data_dict)
             return render(request, "response.html", {"paytm":data_dict})
         else:
             #return render(request,"response.html",{"paytm":data_dict})
