@@ -174,7 +174,7 @@ PAYTM_CALLBACK_URL = "/payments/response/"
 if DEBUG:
     PAYTM_MERCHANT_KEY = "MEjge%cyDZ3UV5jO"
     PAYTM_MERCHANT_ID = "OdRKcA02549498885593"
-    PAYTM_WEBSITE = 'WEB_STAGING'
+    PAYTM_WEBSITE = 'WEBSTAGING'
     HOST_URL = 'https://test-upesjigyasa.herokuapp.com'
     '''
     In sandbox enviornment you can use following wallet credentials to login and make payment.

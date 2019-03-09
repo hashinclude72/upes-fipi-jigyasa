@@ -131,7 +131,7 @@ if __name__ == "__main__":
         "TXN_AMOUNT": "1",
         "CHANNEL_ID": "WEB",
         "INDUSTRY_TYPE_ID": "Retail",
-        "WEBSITE": "xxxxxxxxxxx"
+        "WEBSITE": "WEBSTAGING"
     }
 
     # print(verify_checksum(
