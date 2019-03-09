@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 # Create your models here.
 
-class PaytmHistory(models.Model):
+class Paytm_history(models.Model):
     user = models.ForeignKey(User, related_name='rel_payment_paytm', on_delete=models.CASCADE, null=True, default=None)
     ORDERID = models.CharField('ORDER ID', max_length=30)
     TXNDATE = models.DateTimeField('TXN DATE', default=timezone.now)

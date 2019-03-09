@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.sessions.models import Session
+from .models import Paytm_history
 
 from . import Checksum
 
@@ -94,8 +95,8 @@ def response(request):
         #     data_dict[key] = request.POST[key]
         if verify:
             # user = User.objects.get(id=request.user.id)
-            user.paytmHistory( **data_dict)
-            user.paytmHistory.save()
+            user.paytm_history( **data_dict)
+            user.paytm_history.save()
             # PaytmHistory.objects.create(user=user, **data_dict)
             return render(request, "response.html", {"paytm":data_dict})
         else:
