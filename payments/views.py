@@ -85,13 +85,13 @@ def response(request):
         data_dict = dict(request.POST.items())
         # user = request.POST.get('user')
 
+        verify = Checksum.verify_checksum(data_dict, MERCHANT_KEY, data_dict['CHECKSUMHASH'])
         user_idd = request.session['userid']
         user = User.objects.get(id=user_idd)
         # user = SimpleLazyObject.user
 
         # for key in request.POST:
         #     data_dict[key] = request.POST[key]
-        verify = Checksum.verify_checksum(data_dict, MERCHANT_KEY, data_dict['CHECKSUMHASH'])
         if verify:
             # user = User.objects.get(id=request.user.id)
             user.paytmHistory( **data_dict)
