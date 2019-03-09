@@ -21,7 +21,7 @@ def home(request):
 def payment(request):
     user = request.user
     # request.session.flush()
-    request.session.set_test_cookie()
+    # request.session.set_test_cookie()
     request.session['userid'] = user.id
     # settings.USER = user
     MERCHANT_KEY = settings.PAYTM_MERCHANT_KEY
@@ -64,7 +64,7 @@ def payment(request):
 def response(request):
     if request.method == "POST":
         rqst_usr = request.user
-        bnmcv = request.session.test_cookie_worked()
+        # bnmcv = request.session.test_cookie_worked()
         MERCHANT_KEY = settings.PAYTM_MERCHANT_KEY
         data_dict = {}
         # sdcv = request.POST
@@ -95,7 +95,7 @@ def response(request):
         if verify:
             # user = User.objects.get(id=request.user.id)
             user.paytmHistory( **data_dict)
-            user.user_details.save()
+            user.paytmHistory.save()
             # PaytmHistory.objects.create(user=user, **data_dict)
             return render(request, "response.html", {"paytm":data_dict})
         else:
