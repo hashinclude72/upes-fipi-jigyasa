@@ -161,7 +161,7 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
 
 django_heroku.settings(locals())
 
-
+CSRF_USE_SESSIONS = True
 SESSION_ENGINE = "django.contrib.sessions.backends.db"
 
 
