@@ -168,14 +168,14 @@ SESSION_ENGINE = "django.contrib.sessions.backends.db"
 
 PAYTM_MERCHANT_KEY = "MEjge%cyDZ3UV5jO"
 PAYTM_MERCHANT_ID = "OdRKcA02549498885593"
-HOST_URL = "http://localhost:8000"
+HOST_URL = "https://test-upesjigyasa.herokuapp.com"
 PAYTM_CALLBACK_URL = "/payments/response/"
 
 if DEBUG:
     PAYTM_MERCHANT_KEY = "MEjge%cyDZ3UV5jO"
     PAYTM_MERCHANT_ID = "OdRKcA02549498885593"
     PAYTM_WEBSITE = 'WEB_STAGING'
-    HOST_URL = 'http://localhost:8000'
+    HOST_URL = 'https://test-upesjigyasa.herokuapp.com'
     '''
     In sandbox enviornment you can use following wallet credentials to login and make payment.
     Mobile Number : 7777777777
