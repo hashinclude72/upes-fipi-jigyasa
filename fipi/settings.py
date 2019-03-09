@@ -35,6 +35,7 @@ ALLOWED_HOSTS = ['upesjigyasa.herokuapp.com',]
 INSTALLED_APPS = [
     'jigyasa.apps.JigyasaConfig',
     'users.apps.UsersConfig',
+    'payments.apps.PaymentsConfig',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -60,7 +61,7 @@ ROOT_URLCONF = 'fipi.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ["templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -119,6 +120,8 @@ USE_L10N = True
 
 USE_TZ = True
 
+# SITE_ID = 1
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
@@ -157,3 +160,28 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
 # DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 django_heroku.settings(locals())
+
+
+SESSION_ENGINE = "django.contrib.sessions.backends.db"
+
+
+
+PAYTM_MERCHANT_KEY = "MEjge%cyDZ3UV5jO"
+PAYTM_MERCHANT_ID = "OdRKcA02549498885593"
+HOST_URL = "http://localhost:8000"
+PAYTM_CALLBACK_URL = "/payments/response/"
+
+if DEBUG:
+    PAYTM_MERCHANT_KEY = "MEjge%cyDZ3UV5jO"
+    PAYTM_MERCHANT_ID = "OdRKcA02549498885593"
+    PAYTM_WEBSITE = 'WEB_STAGING'
+    HOST_URL = 'http://localhost:8000'
+    '''
+    In sandbox enviornment you can use following wallet credentials to login and make payment.
+    Mobile Number : 7777777777
+    Password : Paytm12345
+    This test wallet is topped-up to a balance of 7000 Rs. every 5 minutes.
+    '''
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
+ACCOUNT_LOGOUT_REDIRECT_URL = "/"
+# USER = ""
