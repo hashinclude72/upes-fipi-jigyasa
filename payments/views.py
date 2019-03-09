@@ -11,7 +11,7 @@ from .models import Paytm_history
 from . import Checksum
 
 
-from payments.models import PaytmHistory
+# from payments.models import PaytmHistory
 # Create your views here.
 
 @login_required
@@ -95,9 +95,9 @@ def response(request):
         #     data_dict[key] = request.POST[key]
         if verify:
             # user = User.objects.get(id=request.user.id)
-            user.paytm_history( **data_dict)
-            user.paytm_history.save()
-            # PaytmHistory.objects.create(user=user, **data_dict)
+            # user.paytm_history( **data_dict)
+            # user.paytm_history.save()
+            Paytm_history.objects.create(user=user, **data_dict)
             return render(request, "response.html", {"paytm":data_dict})
         else:
             #return render(request,"response.html",{"paytm":data_dict})

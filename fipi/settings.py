@@ -168,18 +168,19 @@ SESSION_ENGINE = "django.contrib.sessions.backends.db"
 
 PAYTM_MERCHANT_KEY = "MEjge%cyDZ3UV5jO"
 PAYTM_MERCHANT_ID = "OdRKcA02549498885593"
-HOST_URL = "https://test-upesjigyasa.herokuapp.com"
+HOST_URL = HOST_URL = os.environ.get('HOST_URL')
 PAYTM_CALLBACK_URL = "/payments/response/"
 
 if DEBUG:
     PAYTM_MERCHANT_KEY = "MEjge%cyDZ3UV5jO"
     PAYTM_MERCHANT_ID = "OdRKcA02549498885593"
     PAYTM_WEBSITE = 'WEBSTAGING'
-    HOST_URL = 'https://test-upesjigyasa.herokuapp.com'
+    HOST_URL = os.environ.get('HOST_URL')
     '''
     In sandbox enviornment you can use following wallet credentials to login and make payment.
     Mobile Number : 7777777777
     Password : Paytm12345
+    OTP: 489871
     This test wallet is topped-up to a balance of 7000 Rs. every 5 minutes.
     '''
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
