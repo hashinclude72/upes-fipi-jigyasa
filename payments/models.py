@@ -1,11 +1,11 @@
 from django.db import models
 from django.conf import settings
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from django.utils import timezone
 # Create your models here.
 
 class Paytm_history(models.Model):
-    user = models.ForeignKey(User, related_name='rel_payment_paytm', on_delete=models.CASCADE, null=True, default=None)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='rel_payment_paytm', on_delete=models.CASCADE, null=True, default=None)
     ORDERID = models.CharField('ORDER ID', max_length=30)
     TXNDATE = models.DateTimeField('TXN DATE', default=timezone.now)
     TXNID = models.CharField('TXN ID', max_length=100)
@@ -28,4 +28,4 @@ class Paytm_history(models.Model):
 
 
     def __unicode__(self):
-        return self.user
+        return self.STATUS

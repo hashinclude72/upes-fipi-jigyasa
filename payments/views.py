@@ -6,19 +6,16 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 # from django.contrib.auth.models import User
 from django.contrib.sessions.models import Session
-# from .models import Paytm_history
+from .models import Paytm_history
 
-from . import Checksum
+from . import Checksum , update_trns
 
-
-# from payments.models import PaytmHistory
-# Create your views here.
 
 @login_required
 def home(request):
     return render(request, 'payments/home.html', {'title': 'home'})
 
-@login_required
+# @login_required
 def payment(request):
     user = request.user
     # settings.USER = user
@@ -30,7 +27,7 @@ def payment(request):
     # Generating unique temporary ids
     order_id = Checksum.__id_generator__()
 
-    bill_amount = '100'
+    bill_amount = 100.0
     if bill_amount:
         data_dict = {
                     'MID':MERCHANT_ID,
@@ -48,13 +45,14 @@ def payment(request):
     return HttpResponse("Bill Amount Could not find. ?bill_amount=10")
 
 
-@login_required
-def update_data(request, **data_dict):
-    update_user = request.user
-    user_res = request.session.get('usersj')
-    ver = Paytm_history.objects.create(user=update_user, **data_dict)
-    return ver
-
+# @login_required
+# @csrf_exempt
+# def update_data(request, **data_dict):
+#     update_user = request.user
+#     user_res = request.session.get('usersj')
+#     ver = Paytm_history.objects.create(user=update_user, **data_dict)
+#     return ver
+#
 
 
 # @csrf_exempt
@@ -72,8 +70,8 @@ def update_data(request, **data_dict):
 @csrf_exempt
 def response(request):
     if request.method == "POST":
-        rqst_usr_res = request.user.id
-        user_res = request.session.get('usersj')
+        # rqst_usr_res = request.user.id
+        # user_res = request.session.get('usersj')
         # bnmcv = request.session.test_cookie_worked()
         MERCHANT_KEY = settings.PAYTM_MERCHANT_KEY
         data_dict = {}
@@ -111,14 +109,14 @@ def response(request):
                         data_dict[key] = 0
                 elif key == "TXNAMOUNT":
                     data_dict[key] = float(request.POST[key])
-            ver = update_data(request, **data_dict)
+            ver = update_trns.update_data(request, **data_dict)
             # user = User.objects.get(id=request.user.id)
             # user.paytm_history( **data_dict)
             # user.paytm_history.save()
             # Paytm_history.objects.create(user=settings.USER, **data_dict)
             return render(request, "payments/response.html", {"paytm":data_dict})
-            if ver:
-                return HttpResponse("some html here")
+            # if ver:
+            #     return HttpResponse("some html here")
             # return redirect('recipt', data_dict)
         else:
             #return render(request,"response.html",{"paytm":data_dict})
