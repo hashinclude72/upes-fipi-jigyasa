@@ -1,11 +1,10 @@
 from django.contrib import admin
-from .models import Paytm_history
-# from payments.models import PaytmHistory
+# from .models import Paytm_history
+from payments.models import Paytm_history
 # # Register your models here.
-# class PaytmHistoryAdmin(admin.ModelAdmin):
-#     list_display = ('user', 'MID', 'TXNAMOUNT', 'STATUS')
-#
-#
-admin.site.register(Paytm_history)
+# class Paytm_historyAdmin(admin.ModelAdmin):
+#     list_display = ("PAYTM_HISTORY", 'MID', 'TXNAMOUNT', 'STATUS')
 
-# PaytmHistoryAdmin)
+
+admin.site.register(Paytm_history)
+# , Paytm_historyAdmin)
