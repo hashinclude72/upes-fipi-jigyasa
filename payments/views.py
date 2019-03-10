@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.utils.translation import get_language
+# from django.utils.translation import get_language
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from django.contrib.sessions.models import Session
-from .models import Paytm_history
+# from .models import Paytm_history
 
 from . import Checksum
 

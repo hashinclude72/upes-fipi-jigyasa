@@ -61,7 +61,7 @@ ROOT_URLCONF = 'fipi.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ["templates"],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -170,7 +170,7 @@ SESSION_ENGINE = "django.contrib.sessions.backends.db"
 
 PAYTM_MERCHANT_KEY = "MEjge%cyDZ3UV5jO"
 PAYTM_MERCHANT_ID = "OdRKcA02549498885593"
-HOST_URL = HOST_URL = os.environ.get('HOST_URL')
+HOST_URL = os.environ.get('HOST_URL')
 PAYTM_CALLBACK_URL = "/payments/response/"
 
 if DEBUG:
