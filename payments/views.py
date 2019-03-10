@@ -16,7 +16,7 @@ from . import Checksum
 
 @login_required
 def home(request):
-    return render(request, 'home.html', {'title': 'home'})
+    return render(request, 'payments/home.html', {'title': 'home'})
 
 @login_required
 def payment(request):
