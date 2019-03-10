@@ -3,12 +3,12 @@
 <html>
 <h1>Pickrr Technologies Pvt. Ltd.!!! <br><br> Merchant Check Out Page<br><br> Please Do Not Refresh The Page</h1><br>
 <table border="1">
-{% csrf_token %}
+
 <tbody>
-{% for key,value in paytm.items %}
+{% for key,value in paytmr.items %}
     <input type="text" name="{{key}}" value="{{value}}">
 {% endfor %}
 </tbody>
-</table>
+
 
 </html>

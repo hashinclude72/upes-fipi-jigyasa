@@ -3,6 +3,7 @@
 <form method="post" action="https://securegw-stage.paytm.in/theia/processTransaction" name="f1">
 <table border="1">
 <tbody>
+{% csrf_token %}
 {% for key,value in paytmdict.items %}
     <input type="text" name="{{key}}" value="{{value}}">
 {% endfor %}

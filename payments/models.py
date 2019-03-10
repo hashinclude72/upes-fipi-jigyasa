@@ -24,7 +24,7 @@ class Paytm_history(models.Model):
     #     app_label = 'paytm'
 
     def __str__(self):
-        return self.user.email
+        return '%s  (%s)' % (self.user.username ,self.pk)
 
 
     def __unicode__(self):

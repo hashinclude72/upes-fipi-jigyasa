@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.utils.translation import get_language
 from django.views.decorators.csrf import csrf_exempt
@@ -18,14 +18,12 @@ from . import Checksum
 def home(request):
     return render(request, 'home.html', {'title': 'home'})
 
-
+@login_required
 def payment(request):
     user = request.user
-    settings.USER = user
-    # request.session.flush()
-    # request.session.set_test_cookie()
-    # request.session['userid'] = user.id
     # settings.USER = user
+    # request.session['userid'] = user.id
+    request.session['usersj'] = user.id
     MERCHANT_KEY = settings.PAYTM_MERCHANT_KEY
     MERCHANT_ID = settings.PAYTM_MERCHANT_ID
     CALLBACK_URL = settings.HOST_URL + settings.PAYTM_CALLBACK_URL
@@ -46,26 +44,36 @@ def payment(request):
                 }
         param_dict = data_dict
         param_dict['CHECKSUMHASH'] = Checksum.generate_checksum(data_dict, MERCHANT_KEY)
-        #params = urllib.urlencode(param)
-        return render(request,"payment.html",{'paytmdict':param_dict,
-                                              # 'CHECKSUMHASH':param_dict['CHECKSUMHASH'],
-                                              # 'ORDER_ID':param_dict['ORDER_ID'],
-                                              # 'MID':param_dict['MID'],
-                                              # 'TXN_AMOUNT':param_dict['TXN_AMOUNT'],
-                                              # 'CUST_ID':param_dict['CUST_ID'],
-                                              # 'INDUSTRY_TYPE_ID':param_dict['INDUSTRY_TYPE_ID'],
-                                              # 'WEBSITE':param_dict['WEBSITE'],
-                                              # 'CHANNEL_ID':param_dict['CHANNEL_ID'],
-                                              # 'CALLBACK_URL':param_dict['CALLBACK_URL'],
-                                              'user': user,
-                                              })
+        return render(request,"payment.html",{'paytmdict':param_dict, 'user': user,})
     return HttpResponse("Bill Amount Could not find. ?bill_amount=10")
 
 
+@login_required
+def update_data(request, **data_dict):
+    update_user = request.user
+    user_res = request.session.get('usersj')
+    ver = Paytm_history.objects.create(user=update_user, **data_dict)
+    return ver
+
+
+
+# @csrf_exempt
+# def recipt(request, data_dict):
+#     # if request.method == "POST":
+#     # data_dict = {}
+#     # data_dict = dict(request.POST.items())
+#     Paytm_history.objects.create(user=request.user, **data_dict)
+#
+#     return render(request, "recipt.html", {"paytmr":data_dict})
+
+
+
+# @login_required
 @csrf_exempt
 def response(request):
     if request.method == "POST":
-        rqst_usr = request.user
+        rqst_usr_res = request.user.id
+        user_res = request.session.get('usersj')
         # bnmcv = request.session.test_cookie_worked()
         MERCHANT_KEY = settings.PAYTM_MERCHANT_KEY
         data_dict = {}
@@ -95,9 +103,6 @@ def response(request):
         # for key in request.POST:
         #     data_dict[key] = request.POST[key]
         if verify:
-            # user = User.objects.get(id=request.user.id)
-            # user.paytm_history( **data_dict)
-            # user.paytm_history.save()
             for key in request.POST:
                 if key == "BANKTXNID" or key == "RESPCODE":
                     if request.POST[key]:
@@ -106,8 +111,15 @@ def response(request):
                         data_dict[key] = 0
                 elif key == "TXNAMOUNT":
                     data_dict[key] = float(request.POST[key])
-            Paytm_history.objects.create(user=settings.USER, **data_dict)
+            ver = update_data(request, **data_dict)
+            # user = User.objects.get(id=request.user.id)
+            # user.paytm_history( **data_dict)
+            # user.paytm_history.save()
+            # Paytm_history.objects.create(user=settings.USER, **data_dict)
             return render(request, "response.html", {"paytm":data_dict})
+            if ver:
+                return HttpResponse("some html here")
+            # return redirect('recipt', data_dict)
         else:
             #return render(request,"response.html",{"paytm":data_dict})
             return HttpResponse("checksum verify failed")

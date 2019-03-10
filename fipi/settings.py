@@ -112,7 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -120,7 +120,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-# SITE_ID = 1
+SITE_ID = 1
 
 
 # Static files (CSS, JavaScript, Images)
@@ -163,6 +163,8 @@ django_heroku.settings(locals())
 
 CSRF_USE_SESSIONS = True
 SESSION_ENGINE = "django.contrib.sessions.backends.db"
+# SESSION_COOKIE_SAMESITE = "None"
+# CSRF_COOKIE_SAMESITE = "None"
 
 
 
