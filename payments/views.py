@@ -41,7 +41,7 @@ def payment(request):
                 }
         param_dict = data_dict
         param_dict['CHECKSUMHASH'] = Checksum.generate_checksum(data_dict, MERCHANT_KEY)
-        return render(request,"payments/payment.html",{'paytmdict':param_dict, 'user': user,})
+        return render(request,"payments/payment.html",{'paytmdict':param_dict, 'user': user})
     return HttpResponse("Bill Amount Could not find. ?bill_amount=10")
 
 

@@ -11,7 +11,10 @@
         <span class="d-block mb-3 caption" data-aos="fade-up" data-aos-delay="100">Jigyasa 2019</span>
         <h1 class="d-block mb-4" data-aos="fade-up" data-aos-delay="200">FIPI FEST JIGYASA 2019</h1>
         <span class="d-block mb-5 caption" data-aos="fade-up" data-aos-delay="300">April Date, UPES, Dehradun</span>
+        {% if user.is_authenticated %}<a href="{% url 'profile' %}" class="btn-custom" data-aos="fade-up" data-aos-delay="400"><span>{{ user.username.upper }}</span></a>
+        {% else %}
         <a href="{% url 'login' %}" class="btn-custom" data-aos="fade-up" data-aos-delay="400"><span>Login</span></a>
+        {% endif %}
       </div>
       <div class="col-md-4 col-4 justify-content-right">
         <div data-aos="fade-up" data-aos-delay="100">
