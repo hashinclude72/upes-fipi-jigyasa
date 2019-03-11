@@ -8,7 +8,7 @@ class User_details(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     team_count = models.IntegerField(default=1)
     date_registered = models.DateTimeField(default=timezone.now)
-    trans_id = models.TextField(blank=True)
+    contact_no = models.IntegerField(default=91)
 
     def __str__(self):
         return self.user.username

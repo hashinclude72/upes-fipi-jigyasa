@@ -18,10 +18,11 @@ class UserDetails(forms.ModelForm):
     CHOICES=[('1',' 1'),
              ('3',' 3')]
     team_count = forms.ChoiceField(choices=CHOICES, widget=forms.Select)
+    contact_no = forms.IntegerField()
 
     class Meta:
         model = User_details
-        fields = ['team_count',]
+        fields = ['team_count','contact_no',]
 
 
 class UserUpdateForm(forms.ModelForm):
@@ -30,3 +31,11 @@ class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['first_name', 'last_name' , 'email']
+
+
+class ContactUpdateForm(forms.ModelForm):
+    contact_no = forms.IntegerField()
+
+    class Meta:
+        model = User_details
+        fields = ['contact_no',]

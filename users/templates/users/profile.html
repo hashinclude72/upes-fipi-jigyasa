@@ -26,6 +26,7 @@
           {% csrf_token %}
           <fieldset class="form-group">
             {{ u_form|crispy }}
+            {{ contact_u_form|crispy }}
           </fieldset>
           <div class="form-group">
             <button class="btn btn-primary px-4 py-2" type="submit">Update</button>
