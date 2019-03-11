@@ -32,10 +32,10 @@ def contacts(request):
             last_name = feedback_form.cleaned_data.get('last_name')
             contact = feedback_form.cleaned_data.get('contact')
 
-            msg_mail = "Name :- " + str(first_name) + " " + str(last_name) + "\nFrom Email :- " + str(from_email) + "\nConatct :- " + str(contact) + "\n\n" + str(message)
-
+            msg_mail = "Name :- " + str(first_name) + " " + str(last_name) + "\n\nFrom Email :- " + str(from_email) + "\n\nConatct :- " + str(contact) + "\n\n" + "Message :- \n" + str(message)
+            #+ "Message :- \n"
             try:
-                send_mail(subject, msg_mail, from_email, [os.environ.get('EMAIL_USER'), from_email, 'rockgameplayer@gmail.com'], fail_silently = True)
+                send_mail(subject, msg_mail, from_email, [os.environ.get('EMAIL_USER'), 'rockgameplayer@gmail.com', from_email], fail_silently = False)
                 messages.success(request, f'Feedback sent.')
             except BadHeaderError:
                 messages.success(request, f'Feedback sending failed.')
