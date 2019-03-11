@@ -17,7 +17,7 @@ class UserRegisterForm(UserCreationForm):
 class UserDetails(forms.ModelForm):
     CHOICES=[('1',' 1'),
              ('3',' 3')]
-    team_count = forms.ChoiceField(choices=CHOICES, widget=forms.Select)
+    team_count = forms.TypedChoiceField(choices=CHOICES, widget=forms.RadioSelect(attrs={'style': 'display: inline-block'}))
     contact_no = forms.IntegerField()
 
     class Meta:
@@ -26,7 +26,7 @@ class UserDetails(forms.ModelForm):
 
 
 class UserUpdateForm(forms.ModelForm):
-    email = forms.EmailField()
+    email = forms.EmailField(required=False)
 
     class Meta:
         model = User
@@ -34,7 +34,7 @@ class UserUpdateForm(forms.ModelForm):
 
 
 class ContactUpdateForm(forms.ModelForm):
-    contact_no = forms.IntegerField()
+    contact_no = forms.IntegerField(required=False)
 
     class Meta:
         model = User_details
