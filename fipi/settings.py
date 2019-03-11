@@ -161,10 +161,11 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
 
 django_heroku.settings(locals())
 
-CSRF_USE_SESSIONS = True
-SESSION_ENGINE = "django.contrib.sessions.backends.db"
-# SESSION_COOKIE_SAMESITE = "None"
-# CSRF_COOKIE_SAMESITE = "None"
+# CSRF_USE_SESSIONS = True
+# # SESSION_ENGINE = "django.contrib.sessions.backends.db"
+# SESSION_COOKIE_SAMESITE = "Lax"
+# CSRF_COOKIE_SAMESITE = "Lax"
+# CSRF_COOKIE_DOMAIN = "*.paytm.in"
 
 
 

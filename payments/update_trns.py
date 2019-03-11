@@ -6,8 +6,9 @@ from django.contrib.auth.models import User
 
 @csrf_exempt
 def update_data(request, **data_dict):
-    update_user = request.user
+    # update_user = request.user
     # update_user = auth.User
-    user_updt = request.session.get('usersj')
+    user_updt = request.session['usersj']
+    update_user = User.objects.get(id=user_updt)
     ver = Paytm_history.objects.create(user=update_user, **data_dict)
     return ver

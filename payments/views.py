@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
-# from django.contrib.auth.models import User
+from django.contrib.auth.models import User
 from django.contrib.sessions.models import Session
 from .models import Paytm_history
 
@@ -40,6 +40,8 @@ def payment(request):
                     'CALLBACK_URL':CALLBACK_URL,
                 }
         param_dict = data_dict
+        user_pays = request.session['usersj']
+        # user_pays = request.session['userwe']
         param_dict['CHECKSUMHASH'] = Checksum.generate_checksum(data_dict, MERCHANT_KEY)
         return render(request,"payments/payment.html",{'paytmdict':param_dict, 'user': user})
     return HttpResponse("Bill Amount Could not find. ?bill_amount=10")
