@@ -54,7 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
+    ]
 
 ROOT_URLCONF = 'fipi.urls'
 
@@ -162,11 +162,14 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
 
 django_heroku.settings(locals())
 
-# CSRF_USE_SESSIONS = True
-# # SESSION_ENGINE = "django.contrib.sessions.backends.db"
-# SESSION_COOKIE_SAMESITE = "Lax"
-# CSRF_COOKIE_SAMESITE = "Lax"
-# CSRF_COOKIE_DOMAIN = "*.paytm.in"
+CSRF_USE_SESSIONS = True
+SESSION_ENGINE = "django.contrib.sessions.backends.db"
+SESSION_COOKIE_SAMESITE = "Lax"
+CSRF_COOKIE_SAMESITE = "Lax"
+CSRF_COOKIE_DOMAIN = ".paytm.in"
+CSRF_TRUSTED_ORIGINS = ".paytm.in"
+CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = False
 
 
 

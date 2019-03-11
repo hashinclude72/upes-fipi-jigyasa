@@ -2,15 +2,22 @@
 
 <html>
 <h1>Pickrr Technologies Pvt. Ltd.!!! <br><br> Merchant Check Out Page<br><br> Please Do Not Refresh The Page</h1><br>
+
+<form method="POST" action="{% url 'recipt' %}"  enctype="multipart/form-data">
 <table border="1">
 <tbody>
-<!-- {% for key,value in paytm.items %}
+{% for key,value in paytm.items %}
     <input type="text" name="{{key}}" value="{{value}}">
-{% endfor %} -->
+{% endfor %}
+
+
+
+<h2>{{ user }}</h2>
 </tbody>
 </table>
-<!-- <script type="text/javascript">
-window.location.reload();
-</script> -->
+<button class="btn btn-primary px-4 py-2" type="submit" style="background-color:#00b9f5; border-color:#00b9f5;"> update</button>
+</form>
+
+
 
 </html>

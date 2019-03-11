@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 # from django.utils.translation import get_language
-from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_exempt, csrf_protect, ensure_csrf_cookie
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -15,7 +15,8 @@ from . import Checksum , update_trns
 def home(request):
     return render(request, 'payments/home.html', {'title': 'home'})
 
-# @login_required
+@login_required
+@ensure_csrf_cookie
 def payment(request):
     user = request.user
     # settings.USER = user
@@ -57,19 +58,21 @@ def payment(request):
 #
 
 
-# @csrf_exempt
-# def recipt(request, data_dict):
-#     # if request.method == "POST":
-#     # data_dict = {}
-#     # data_dict = dict(request.POST.items())
-#     Paytm_history.objects.create(user=request.user, **data_dict)
-#
-#     return render(request, "recipt.html", {"paytmr":data_dict})
+@csrf_exempt
+def recipt(request):
+    if request.method == "POST":
+        data_dict = {}
+        data_dict = dict(request.POST.items())
+        Paytm_history.objects.create(user=request.user, **data_dict)
+
+    return render(request, "payments/recipt.html", {"paytmr":data_dict})
 
 
 
 # @login_required
 @csrf_exempt
+# @csrf_protect
+# @ensure_csrf_cookie
 def response(request):
     if request.method == "POST":
         # rqst_usr_res = request.user.id
@@ -111,7 +114,7 @@ def response(request):
                         data_dict[key] = 0
                 elif key == "TXNAMOUNT":
                     data_dict[key] = float(request.POST[key])
-            ver = update_trns.update_data(request, **data_dict)
+            # ver = update_trns.update_data(request, **data_dict)
             # user = User.objects.get(id=request.user.id)
             # user.paytm_history( **data_dict)
             # user.paytm_history.save()
