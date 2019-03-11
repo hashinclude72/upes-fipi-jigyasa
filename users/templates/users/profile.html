@@ -2,31 +2,42 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-    <div class="site-section justify-content-center site-hero">
-      <div class="container">
-        <div class="row align-items-center justify-content-center" style="height:0;">
-          <div class="col-md-6 col-lg-6 border-primary pricing" data-aos="fade-up" data-aos-delay="300">
-            <div class="media-body">
-              <legend class="border-bottom mb-4" style="color:#ff5733;">Profile Info</legend>
-              <p class="text">Username - {{ user.username }}</p>
-              <p class="text">Total members - {{ user.user_details.team_count }}</p>
-            </div>
-          <form method="POST" enctype="multipart/form-data">
-              {% csrf_token %}
-              <fieldset class="form-group">
-                  {{ u_form|crispy }}
-              </fieldset>
-              <div class="form-group">
-                  <button class="btn btn-primary px-4 py-2" type="submit">Update</button>
-                  <small class="text-muted">
-                       ,If you want to
-                  </small>
-              </div>
-          </form>
-          </div>
-          </div>
-        </div>
+<div class="site-section justify-content-center site-hero">
+  <div class="container">
+
+
+
+    <div class="row align-items-center justify-content-center" style="height:0;">
+
+      <div class="col-md-7 col-lg-7 border-primary pricing mt-5 mb-2" data-aos="fade-up" data-aos-delay="300">
+        <button class="btn btn-primary px-4 py-2" type="button"><a href="{% url 'home' %}" style="color:white;">PayNow</a></button>
+        <small class="text-muted">
+               Make payemnt to complete your registration.
+        </small>
       </div>
+
+      <div class="col-md-7 col-lg-7 border-primary pricing" data-aos="fade-up" data-aos-delay="300">
+        <div class="media-body">
+          <legend class="border-bottom mb-4" style="color:#ff5733;">Profile Info</legend>
+          <p class="text">Username - {{ user.username }}</p>
+          <p class="text">Total members - {{ user.user_details.team_count }}</p>
+        </div>
+        <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <fieldset class="form-group">
+            {{ u_form|crispy }}
+          </fieldset>
+          <div class="form-group">
+            <button class="btn btn-primary px-4 py-2" type="submit">Update</button>
+            <small class="text-muted">
+              ,If you want to
+            </small>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 {% endblock content %}
