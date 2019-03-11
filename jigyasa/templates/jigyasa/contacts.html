@@ -1,5 +1,6 @@
 {% extends "jigyasa/base.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block content %}
 
 
@@ -19,40 +20,48 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6" data-aos="fade-up">
-        <form action="#">
+        <form method="POST">
 
 
           <div class="row form-group">
             <div class="col-md-6 mb-3 mb-md-0">
-              <label class="" for="fname">First Name</label>
-              <input type="text" id="fname" class="form-control">
+              <!-- <label class="" for="fname">First Name</label> -->
+              {{ feedback_form.first_name|as_crispy_field }}
             </div>
             <div class="col-md-6">
-              <label class="" for="lname">Last Name</label>
-              <input type="text" id="lname" class="form-control">
+              <!-- <label class="" for="lname">Last Name</label> -->
+              {{ feedback_form.last_name|as_crispy_field }}
             </div>
           </div>
 
           <div class="row form-group">
 
             <div class="col-md-12">
-              <label class="" for="email">Email</label>
-              <input type="email" id="email" class="form-control">
+              <!-- <label class="" for="email">Email</label> -->
+              {{ feedback_form.from_email|as_crispy_field }}
             </div>
           </div>
 
           <div class="row form-group">
 
             <div class="col-md-12">
-              <label class="" for="subject">Subject</label>
-              <input type="subject" id="subject" class="form-control">
+              <!-- <label class="" for="email">Email</label> -->
+              {{ feedback_form.contact|as_crispy_field }}
+            </div>
+          </div>
+
+          <div class="row form-group">
+
+            <div class="col-md-12">
+              <!-- <label class="" for="subject">Subject</label> -->
+              {{ feedback_form.subject|as_crispy_field }}
             </div>
           </div>
 
           <div class="row form-group">
             <div class="col-md-12">
-              <label class="" for="message">Message</label>
-              <textarea name="message" id="message" cols="30" rows="7" class="form-control"></textarea>
+              <!-- <label class="" for="message">Message</label> -->
+              {{ feedback_form.message|as_crispy_field }}
             </div>
           </div>
 
