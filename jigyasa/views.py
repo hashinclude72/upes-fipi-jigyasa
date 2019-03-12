@@ -35,7 +35,7 @@ def contacts(request):
             msg_mail = "Name :- " + str(first_name) + " " + str(last_name) + "\nEmail :- " + str(from_email) + "\nConatct :- " + str(contact) + "\n\n" + "Message :- " + str(message)
 
             try:
-                send_mail(subject, msg_mail, from_email, [os.environ.get('EMAIL_USER'), 'rockgameplayer@gmail.com', from_email], fail_silently = False)
+                send_mail(subject, msg_mail, from_email, [os.environ.get('EMAIL_USER'), 'rockgameplayer@gmail.com', from_email], fail_silently = True)
                 messages.success(request, f'A copy of feedback is sent to you.')
             except BadHeaderError or SMTPAuthenticationError:
                 messages.success(request, f'Feedback failed.')

@@ -29,3 +29,9 @@ class Paytm_history(models.Model):
 
     def __unicode__(self):
         return self.STATUS
+
+
+    def __iter__(self):
+        for field_name in [f.name for f in self._meta.get_fields()]:
+            value = getattr(self, field_name, None)
+            yield (field_name, value)

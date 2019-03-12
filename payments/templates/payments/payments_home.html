@@ -9,27 +9,51 @@
   <div class="container">
     <div class="row align-items-center justify-content-center" style="height:0;">
 
+      {% if status == True %}
+      <!-- <h2>Payment Details</h2><br> -->
+
+        {% for key,value in trns %}
+
+          {% if key == 'id' or key == 'user' or key == 'MID' or key == 'PAYMENTMODE' or key == 'CURRENCY' or key == 'RESPCODE' or key == 'GATEWAYNAME' or key == 'BANKNAME' %}
+
+          {% else %}
+
+            {{key}} - {{ value }}<br>
+
+            {% endif %}
+        {% endfor %}
+
+
+      {% else %}
+
+
       <div class="col-md-7 col-lg-7 border-primary pricing" data-aos="fade-up" data-aos-delay="300" style="border:2px solid #00b9f5; border-width: 0px 0px 2px 0px; border-color:#00b9f5!important;">
-        <button class="btn btn-primary px-4 py-2" type="button" style="background-color:#00b9f5; border-color:#00b9f5;"><a href="{% url 'paytm' %}" style="color:white;">Paytm</a></button>
+        <h3>Bill Amount - {{ bill_amount }}</h3>
+      </div>
+
+
+      <div class="col-md-7 col-lg-7 border-primary pricing" data-aos="fade-up" data-aos-delay="300" style="border:2px solid #00b9f5; border-color:#00b9f5!important;">
+        <button class="btn btn-primary px-4 py-2" type="button" style="background-color:#00b9f5; border-color:#00b9f5;"><a href="{% url 'paytm' %}" style="color:white;">Paytm</a></button><br><br>
         <small class="text">
-          Paytm wallet, Debit Card, Credit Card and Net Banking.
+          Paytm wallet, Debit Card, Credit Card, UPI and Net Banking.
         </small>
       </div>
 
-      <div class="col-md-7 col-lg-7 border-primary pricing" data-aos="fade-up" data-aos-delay="300" style="border:2px solid #13ad00; border-width: 0px 0px 2px 0px; border-color:#13ad00!important;">
+      <div class="col-md-7 col-lg-7 border-primary pricing" data-aos="fade-up" data-aos-delay="300" style="border:2px solid #13ad00; border-color:#13ad00!important;">
         <button class="btn btn-primary px-4 py-2" type="button" style="background-color:#14b200; border-color:#14b200;"><a href="{% url 'payments_home' %}" style="color:white;">Google Pay</a></button>
         <small class="text-muted">
           Click to pay.
         </small>
       </div>
 
-      <div class="col-md-7 col-lg-7 border-primary pricing" data-aos="fade-up" data-aos-delay="300" style="border:2px solid #ba6c00; border-width: 0px 0px 2px 0px; border-color:#ba6c00!important;">
+      <div class="col-md-7 col-lg-7 border-primary pricing" data-aos="fade-up" data-aos-delay="300" style="border:2px solid #ba6c00; border-color:#ba6c00!important;">
         <button class="btn btn-primary px-4 py-2" type="button" style="background-color:#ffba26; border-color:#ffba26;"><a href="{% url 'payments_home' %}" style="color:white;">Amazon Pay</a></button>
         <small class="text-muted">
           Click to pay.
         </small>
       </div>
 
+      {% endif %}
     </div>
   </div>
 </div>
