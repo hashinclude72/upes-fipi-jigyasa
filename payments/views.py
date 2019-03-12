@@ -12,12 +12,12 @@ from . import Checksum , update_trns
 
 
 @login_required
-def home(request):
-    return render(request, 'payments/home.html', {'title': 'home'})
+def payments_home(request):
+    return render(request, 'payments/payments_home.html', {'title': 'Payments'})
 
 @login_required
 @ensure_csrf_cookie
-def payment(request):
+def paytm(request):
     user = request.user
     # settings.USER = user
     # request.session['userid'] = user.id
@@ -44,7 +44,7 @@ def payment(request):
         user_pays = request.session['usersj']
         # user_pays = request.session['userwe']
         param_dict['CHECKSUMHASH'] = Checksum.generate_checksum(data_dict, MERCHANT_KEY)
-        return render(request,"payments/payment.html",{'paytmdict':param_dict, 'user': user})
+        return render(request,"payments/paytm.html",{'paytmdict':param_dict, 'user': user, 'title': 'Paytm'})
     return HttpResponse("Bill Amount Could not find. ?bill_amount=10")
 
 
