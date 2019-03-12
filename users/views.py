@@ -25,10 +25,6 @@ def register(request):
     return render(request, 'users/register.html', {'form': form, 'user_details_form':user_details_form , 'title': 'Register'})
 
 
-# def logout(request):
-#     messages.success(request, f'Your account has been logged out.')
-#     return redirect('profile')
-
 
 @login_required
 def profile(request):

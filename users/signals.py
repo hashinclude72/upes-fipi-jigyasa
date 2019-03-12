@@ -9,9 +9,7 @@ from payments.models import Paytm_history
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         User_details.objects.create(user=instance)
-        # Paytm_history.objects.create(user=instance)
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.user_details.save()
-    # instance.paytm_history.save()

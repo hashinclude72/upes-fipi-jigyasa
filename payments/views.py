@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib.sessions.models import Session
 from .models import Paytm_history
 
-from . import Checksum , update_trns
+from . import Checksum
 
 
 @login_required
@@ -36,6 +36,7 @@ def paytm(request):
     MERCHANT_KEY = settings.PAYTM_MERCHANT_KEY
     MERCHANT_ID = settings.PAYTM_MERCHANT_ID
     CALLBACK_URL = settings.HOST_URL + settings.PAYTM_CALLBACK_URL
+    CUST_ID = user.email
     # Generating unique temporary ids
     order_id = Checksum.__id_generator__()
 
@@ -50,7 +51,7 @@ def paytm(request):
                     'MID':MERCHANT_ID,
                     'ORDER_ID':order_id,
                     'TXN_AMOUNT': bill_amount,
-                    'CUST_ID':'shubhamjaswal772@gmail.com',
+                    'CUST_ID': CUST_ID,
                     'INDUSTRY_TYPE_ID':'Retail',
                     'WEBSITE': settings.PAYTM_WEBSITE,
                     'CHANNEL_ID':'WEB',
@@ -71,7 +72,7 @@ def recipt(request):
         data_dict = dict(request.POST.items())
         Paytm_history.objects.create(user=request.user, **data_dict)
 
-    return render(request, "payments/recipt.html", {"paytmr":data_dict})
+    return render(request, "payments/recipt.html", {"paytmr":data_dict, 'title': 'Recipt'})
 
 
 
@@ -111,7 +112,7 @@ def response(request):
             # user.paytm_history( **data_dict)
             # user.paytm_history.save()
             # Paytm_history.objects.create(user=settings.USER, **data_dict)
-            return render(request, "payments/response.html", {"paytm":data_dict})
+            return render(request, "payments/response.html", {"paytm":data_dict, 'title': 'Confirm'})
             #     return HttpResponse("some html here")
         else:
             return HttpResponse("checksum verify failed")
