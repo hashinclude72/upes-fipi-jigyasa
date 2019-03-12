@@ -39,8 +39,9 @@
           <tbody>
           {% for key,value in paytm.items %}
             {% if key == 'MID' or key == 'PAYMENTMODE' or key == 'CURRENCY' or key == 'RESPCODE' or key == 'GATEWAYNAME' or key == 'BANKNAME' %}
+              <input type="hidden" name="{{key}}" value="{{value}}">
             {% else %}
-              {{ key }} : <input class="form-control" type="text" name="{{key}}" value="{{value}}" disabled><br>
+              {{ key }} : <input class="form-control" type="text" name="{{key}}" value="{{value}}" readonly="readonly"><br>
             {% endif %}
           {% endfor %}
           <!-- <h2>{{ user }}</h2> -->
