@@ -17,7 +17,7 @@ class UserRegisterForm(UserCreationForm):
 class UserDetails(forms.ModelForm):
     CHOICES=[('1',' 1     --    Price Rs. 2000'),
              ('3',' 3     --    Pirce Rs. 5500')]
-    team_count = forms.ChoiceField(label='No. of members' , choices=CHOICES, widget=forms.RadioSelect(attrs={'style': 'display: inline-block'}))
+    team_count = forms.ChoiceField(label='No. of members' , choices=CHOICES, widget=forms.RadioSelect(attrs={"required": "required"}), required=True)
     contact_no = forms.IntegerField()
 
     class Meta:

@@ -27,7 +27,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 #DEBUG = True
 DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
 
-ALLOWED_HOSTS = ['upesjigyasa.herokuapp.com',]
+ALLOWED_HOSTS = ['upesjigyasa.herokuapp.com',
+                'www.upesjigyasa.com',
+                ]
 
 
 # Application definition
@@ -164,24 +166,24 @@ django_heroku.settings(locals())
 
 CSRF_USE_SESSIONS = True
 SESSION_ENGINE = "django.contrib.sessions.backends.db"
-SESSION_COOKIE_SAMESITE = "Lax"
-CSRF_COOKIE_SAMESITE = "Lax"
-CSRF_COOKIE_DOMAIN = ".paytm.in"
-CSRF_TRUSTED_ORIGINS = ".paytm.in"
-CSRF_COOKIE_SECURE = False
-SESSION_COOKIE_SECURE = False
+# SESSION_COOKIE_SAMESITE = "Lax"
+# CSRF_COOKIE_SAMESITE = "Lax"
+# CSRF_COOKIE_DOMAIN = ".paytm.in"
+# CSRF_TRUSTED_ORIGINS = ".paytm.in"
+# CSRF_COOKIE_SECURE = False
+# SESSION_COOKIE_SECURE = False
 
 
 
-PAYTM_MERCHANT_KEY = "MEjge%cyDZ3UV5jO"
-PAYTM_MERCHANT_ID = "OdRKcA02549498885593"
+PAYTM_MERCHANT_KEY = os.environ.get('PAYTM_MERCHANT_KEY')
+PAYTM_MERCHANT_ID = os.environ.get('PAYTM_MERCHANT_ID')
 HOST_URL = os.environ.get('HOST_URL')
 PAYTM_CALLBACK_URL = "/payments/response/"
 
 if DEBUG:
-    PAYTM_MERCHANT_KEY = "MEjge%cyDZ3UV5jO"
-    PAYTM_MERCHANT_ID = "OdRKcA02549498885593"
-    PAYTM_WEBSITE = 'WEBSTAGING'
+    PAYTM_MERCHANT_KEY = os.environ.get('PAYTM_MERCHANT_KEY')
+    PAYTM_MERCHANT_ID = os.environ.get('PAYTM_MERCHANT_ID')
+    PAYTM_WEBSITE = os.environ.get('PAYTM_WEBSITE')
     HOST_URL = os.environ.get('HOST_URL')
     '''
     In sandbox enviornment you can use following wallet credentials to login and make payment.
@@ -192,4 +194,4 @@ if DEBUG:
     '''
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
 ACCOUNT_LOGOUT_REDIRECT_URL = "/"
-# USER = ""
+SECURE_SSL_REDIRECT = True
