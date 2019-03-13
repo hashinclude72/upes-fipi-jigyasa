@@ -11,13 +11,13 @@
 
       <div class="col-11 col-md-7 col-lg-7 border-primary pricing mt-5 mb-2" data-aos="fade-up" data-aos-delay="300">
         <button class="btn btn-primary px-4 py-2" type="button"><a href="{% url 'payments_home' %}" style="color:white;">
-          Payments
+          Payments</a></button>
           {% if status == True %}
           <span class="fas fa-check-circle"></span>
           {% else %}
           <span class="fas fa-times-circle"></span>
           {% endif %}
-          </a></button>
+
         <small class="text-muted">
                Make payemnt to complete your registration.
         </small>
