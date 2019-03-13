@@ -76,8 +76,9 @@ def recipt(request):
     status = False
     # if Paytm_history.objects.filter(user=user, STATUS = 'TXN_SUCCESS'):
     #     status = True
-    if data_dict['STATUS'] == 'TXN_SUCCESS':
-        statue = True
+    for key,value in data_dict.items():
+        if key == 'STATUS' and value == 'TXN_SUCCESS':
+            statue = True
     return render(request, "payments/recipt.html", {"paytmr": data_dict, 'title': 'Recipt', "status": status})
 
 
