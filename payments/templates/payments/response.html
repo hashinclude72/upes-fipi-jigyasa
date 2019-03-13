@@ -47,13 +47,12 @@
             {% if key == 'MID' or key == 'PAYMENTMODE' or key == 'CURRENCY' or key == 'RESPCODE' or key == 'GATEWAYNAME' or key == 'BANKNAME' %}
               <input type="hidden" name="{{key}}" value="{{value}}">
             {% else %}
-              <input type="hidden" class="form-control" type="text" name="{{key}}" value="{{value}}" readonly="readonly"><br>
+              <input type="hidden" class="form-control" type="text" name="{{key}}" value="{{value}}" readonly="readonly">
             {% endif %}
           {% endfor %}
           <!-- <h2>{{ user }}</h2> -->
           </tbody>
           </table>
-          <br><br>
           <script type="text/javascript">
             document.save_details.submit();
           </script>
