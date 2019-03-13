@@ -14,13 +14,17 @@
           Payments</a></button>
           {% if status == True %}
           <span class="fas fa-check-circle"></span>
+          <small class="text-muted">
+                 Payment Complete.
+          </small>
           {% else %}
           <span class="fas fa-times-circle"></span>
+          <small class="text-muted">
+                 Make payment to complete your registration.
+          </small>
           {% endif %}
 
-        <small class="text-muted">
-               Make payemnt to complete your registration.
-        </small>
+
       </div>
 
       <div class="col-11 col-md-7 col-lg-7 mb-5 border-primary pricing" data-aos="fade-up" data-aos-delay="300">
