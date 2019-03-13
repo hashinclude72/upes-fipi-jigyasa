@@ -4,6 +4,7 @@ from .forms import UserRegisterForm, UserDetails, UserUpdateForm, ContactUpdateF
 from .models import User_details
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from .models import Paytm_history
 
 def register(request):
     if request.method == 'POST':
