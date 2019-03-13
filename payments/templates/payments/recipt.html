@@ -33,7 +33,13 @@
       <div class="row justify-content-center">
         <div class="col-11 col-md-8 mt-5 mb-5 border-primary pricing">
             <p class="text-primary">Jigyasa Payments!!!</p>
+
+            {% if paytmr['STATUS'] == 'TXN_SUCCESS' %}
             <p class="text-primary">Congratulation your payment is successful.</p>
+            {% else %}
+            <p class="text-primary">Transaction Faild, Please try again.</p>
+            {% endif %}
+
             <table border="1">
 
             <tbody>

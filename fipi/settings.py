@@ -179,13 +179,14 @@ SESSION_ENGINE = "django.contrib.sessions.backends.db"
 PAYTM_MERCHANT_KEY = os.environ.get('PAYTM_MERCHANT_KEY')
 PAYTM_MERCHANT_ID = os.environ.get('PAYTM_MERCHANT_ID')
 HOST_URL = os.environ.get('HOST_URL')
+PAYTM_WEBSITE = os.environ.get('PAYTM_WEBSITE')
 PAYTM_CALLBACK_URL = "/payments/response/"
 
 if DEBUG:
-    PAYTM_MERCHANT_KEY = os.environ.get('PAYTM_MERCHANT_KEY')
-    PAYTM_MERCHANT_ID = os.environ.get('PAYTM_MERCHANT_ID')
-    PAYTM_WEBSITE = os.environ.get('PAYTM_WEBSITE')
+    PAYTM_MERCHANT_KEY = os.environ.get('PAYTM_MERCHANT_KEY_TEST')
+    PAYTM_MERCHANT_ID = os.environ.get('PAYTM_MERCHANT_ID_TEST')
     HOST_URL = os.environ.get('HOST_URL')
+    PAYTM_WEBSITE = 'WEBSTAGING'
     '''
     In sandbox enviornment you can use following wallet credentials to login and make payment.
     Mobile Number : 7777777777
