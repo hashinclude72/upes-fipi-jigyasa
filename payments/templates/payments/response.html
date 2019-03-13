@@ -40,7 +40,7 @@
           <p class="text-primary">Jigyasa Payments!!!</p>
           <p class="text-primary">Please Do Not Refresh The Page.</p>
           <p class="text-primary">Transaction processing</p>
-          <form method="POST" action="{% url 'recipt' %}"  enctype="multipart/form-data">
+          <form method="POST" action="{% url 'recipt' %}"  name="save_details" enctype="multipart/form-data">
           <table border="1">
           <tbody>
           {% for key,value in paytm.items %}
@@ -55,7 +55,7 @@
           </table>
           <br><br>
           <script type="text/javascript">
-            document.paytm.submit();
+            document.save_details.submit();
           </script>
           <!-- <button class="btn btn-primary px-4 py-2" type="submit"> Submit Transaction Details</button> -->
           </form>
