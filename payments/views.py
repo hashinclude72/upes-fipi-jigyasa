@@ -72,7 +72,13 @@ def recipt(request):
         data_dict = dict(request.POST.items())
         Paytm_history.objects.create(user=request.user, **data_dict)
 
-    return render(request, "payments/recipt.html", {"paytmr":data_dict, 'title': 'Recipt'})
+    # user = request.user
+    status = False
+    # if Paytm_history.objects.filter(user=user, STATUS = 'TXN_SUCCESS'):
+    #     status = True
+    if data_dict['STATUS'] == 'TXN_SUCCESS':
+        statue = True
+    return render(request, "payments/recipt.html", {"paytmr": data_dict, 'title': 'Recipt', "status": status})
 
 
 
