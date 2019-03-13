@@ -30,15 +30,16 @@
   </head>
   <body>
 
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
       alert("Please save your Transaction ID and Order ID for future refrences.");
-    </script>
+    </script> -->
 
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-11 col-md-7 mt-5 mb-5 border-primary pricing">
-          <p class="text-primary">CHECKOUT DETAILS !!!</p>
-          <p class="text-primary">Save your transaction ID before submit !!!</p>
+          <p class="text-primary">Jigyasa Payments!!!</p>
+          <p class="text-primary">Please Do Not Refresh The Page.</p>
+          <p class="text-primary">Transaction processing</p>
           <form method="POST" action="{% url 'recipt' %}"  enctype="multipart/form-data">
           <table border="1">
           <tbody>
@@ -46,14 +47,17 @@
             {% if key == 'MID' or key == 'PAYMENTMODE' or key == 'CURRENCY' or key == 'RESPCODE' or key == 'GATEWAYNAME' or key == 'BANKNAME' %}
               <input type="hidden" name="{{key}}" value="{{value}}">
             {% else %}
-              {{ key }} : <input class="form-control" type="text" name="{{key}}" value="{{value}}" readonly="readonly"><br>
+              <input type="hidden" class="form-control" type="text" name="{{key}}" value="{{value}}" readonly="readonly"><br>
             {% endif %}
           {% endfor %}
           <!-- <h2>{{ user }}</h2> -->
           </tbody>
           </table>
           <br><br>
-          <button class="btn btn-primary px-4 py-2" type="submit"> Submit Transaction Details</button>
+          <script type="text/javascript">
+            document.paytm.submit();
+          </script>
+          <!-- <button class="btn btn-primary px-4 py-2" type="submit"> Submit Transaction Details</button> -->
           </form>
         </div>
       </div>

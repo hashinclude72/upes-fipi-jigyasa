@@ -78,7 +78,7 @@ def recipt(request):
     #     status = True
     for key,value in data_dict.items():
         if key == 'STATUS' and value == 'TXN_SUCCESS':
-            statue = True
+            status = True
     return render(request, "payments/recipt.html", {"paytmr": data_dict, 'title': 'Recipt', "status": status})
 
 
