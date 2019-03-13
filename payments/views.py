@@ -43,7 +43,7 @@ def paytm(request):
     if user.user_details.team_count == 1:
         bill_amount = 2000.00
     else:
-        bill_amount = 5500.00
+        bill_amount = 1.00
 
 
     if bill_amount:
