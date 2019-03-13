@@ -54,7 +54,7 @@ def paytm(request):
                     'CUST_ID': CUST_ID,
                     'INDUSTRY_TYPE_ID':'Retail',
                     'WEBSITE': settings.PAYTM_WEBSITE,
-                    'CHANNEL_ID':'WAP',
+                    'CHANNEL_ID':'WEB',
                     'CALLBACK_URL':CALLBACK_URL,
                 }
         param_dict = data_dict
