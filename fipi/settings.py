@@ -29,7 +29,9 @@ DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
 
 ALLOWED_HOSTS = ['upesjigyasa.herokuapp.com',
                 'www.upesjigyasa.com',
-                'http://localhost:8000'
+                'http://localhost:8000',
+                '*',
+                'test-upesjigyasa.herokuapp.com',
                 ]
 
 
