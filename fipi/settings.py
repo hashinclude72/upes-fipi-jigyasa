@@ -24,14 +24,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 #SECRET_KEY = 'al*1lrn$iudiaks4&o96x^tlmqf!xnmj2=izh@u=1ljf$@q3^m'
 SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
+# DEBUG = False
 DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
 
-ALLOWED_HOSTS = ['upesjigyasa.herokuapp.com',
-                'www.upesjigyasa.com',
+ALLOWED_HOSTS = ['.upesjigyasa.herokuapp.com',
+                '.upesjigyasa.com',
                 'http://localhost:8000',
                 '*',
-                'test-upesjigyasa.herokuapp.com',
+                '.test-upesjigyasa.herokuapp.com',
                 ]
 
 
