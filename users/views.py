@@ -42,6 +42,7 @@ def profile(request):
         u_form  = UserUpdateForm(instance=request.user)
         contact_u_form = ContactUpdateForm(instance=request.user.user_details)
 
+    user = request.user
     status = False
     if Paytm_history.objects.filter(user=user, STATUS = 'TXN_SUCCESS'):
         status = True
