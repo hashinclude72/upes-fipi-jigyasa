@@ -184,18 +184,18 @@ HOST_URL = os.environ.get('HOST_URL')
 PAYTM_WEBSITE = os.environ.get('PAYTM_WEBSITE')
 PAYTM_CALLBACK_URL = "/payments/response/"
 
-if DEBUG:
-    PAYTM_MERCHANT_KEY = os.environ.get('PAYTM_MERCHANT_KEY_TEST')
-    PAYTM_MERCHANT_ID = os.environ.get('PAYTM_MERCHANT_ID_TEST')
-    HOST_URL = os.environ.get('HOST_URL')
-    PAYTM_WEBSITE = 'WEBSTAGING'
-    '''
-    In sandbox enviornment you can use following wallet credentials to login and make payment.
-    Mobile Number : 7777777777
-    Password : Paytm12345
-    OTP: 489871
-    This test wallet is topped-up to a balance of 7000 Rs. every 5 minutes.
-    '''
+# if DEBUG:
+#     PAYTM_MERCHANT_KEY = os.environ.get('PAYTM_MERCHANT_KEY_TEST')
+#     PAYTM_MERCHANT_ID = os.environ.get('PAYTM_MERCHANT_ID_TEST')
+#     HOST_URL = os.environ.get('HOST_URL')
+#     PAYTM_WEBSITE = 'WEBSTAGING'
+#     '''
+#     In sandbox enviornment you can use following wallet credentials to login and make payment.
+#     Mobile Number : 7777777777
+#     Password : Paytm12345
+#     OTP: 489871
+#     This test wallet is topped-up to a balance of 7000 Rs. every 5 minutes.
+#     '''
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
 ACCOUNT_LOGOUT_REDIRECT_URL = "/"
 SECURE_SSL_REDIRECT = True
