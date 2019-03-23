@@ -19,7 +19,7 @@ class UserDetails(forms.ModelForm):
              ('3',' 3     --    Pirce Rs. 5500')]
     team_count = forms.ChoiceField(label='No. of members' , choices=CHOICES, widget=forms.RadioSelect(attrs={"required": "required"}), required=True)
     contact_no = forms.IntegerField()
-    referral = forms.CharField()
+    referral = forms.CharField(required=False)
 
     class Meta:
         model = User_details
