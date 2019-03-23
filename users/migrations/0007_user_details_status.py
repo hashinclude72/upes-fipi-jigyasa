@@ -10,11 +10,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterField(
-            model_name='user_details',
-            name='status',
-            field=models.CharField(default='Not Paid', max_length=12, verbose_name='STATUS'),
-        ),
         migrations.AddField(
             model_name='user_details',
             name='referral',

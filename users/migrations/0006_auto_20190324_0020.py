@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='user_details',
             name='status',
-            field=models.CharField(default='Not set', max_length=12, verbose_name='STATUS'),
+            field=models.CharField(default='Not Paid', max_length=12, verbose_name='STATUS'),
         ),
     ]
