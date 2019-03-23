@@ -32,6 +32,7 @@
           <legend class="border-bottom mb-4" style="color:#ff5733;">Profile Info</legend>
           <p class="text">Username - {{ user.username }}</p>
           <p class="text">Total members - {{ user.user_details.team_count }}</p>
+          <p class="text">Referral - {{ user.user_details.referral }}</p>
         </div>
         <form method="POST" enctype="multipart/form-data">
           {% csrf_token %}

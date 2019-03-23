@@ -10,6 +10,7 @@ class User_details(models.Model):
     date_registered = models.DateTimeField(default=timezone.now)
     contact_no = models.BigIntegerField(default=91)
     status = models.CharField('STATUS', max_length=12, default='Not Paid')
+    referral = models.CharField('REFERRAL', max_length=30, null=True, blank=True)
 
     def __str__(self):
         return self.user.username

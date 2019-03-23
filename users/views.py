@@ -17,6 +17,7 @@ def register(request):
             user = form.save()
             user.user_details.team_count = user_details_form.cleaned_data.get('team_count')
             user.user_details.contact_no = user_details_form.cleaned_data.get('contact_no')
+            user.user_details.referral = user_details_form.cleaned_data.get('referral')
             user.user_details.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'Account Registered for {username}')
