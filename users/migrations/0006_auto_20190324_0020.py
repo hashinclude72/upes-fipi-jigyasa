@@ -12,12 +12,7 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AddField(
             model_name='user_details',
-            name='referral',
-            field=models.CharField(blank=True, max_length=30, null=True, verbose_name='REFERRAL'),
-        ),
-        migrations.AlterField(
-            model_name='user_details',
             name='status',
-            field=models.CharField(default='Not Paid', max_length=12, verbose_name='STATUS'),
+            field=models.CharField(default='Not set', max_length=12, verbose_name='STATUS'),
         ),
     ]
