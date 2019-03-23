@@ -183,6 +183,7 @@ PAYTM_MERCHANT_ID = os.environ.get('PAYTM_MERCHANT_ID')
 HOST_URL = os.environ.get('HOST_URL')
 PAYTM_WEBSITE = os.environ.get('PAYTM_WEBSITE')
 PAYTM_CALLBACK_URL = "/payments/response/"
+PAYTM_URL = os.environ.get('PAYTM_URL')
 
 # if DEBUG:
 #     PAYTM_MERCHANT_KEY = os.environ.get('PAYTM_MERCHANT_KEY_TEST')

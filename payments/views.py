@@ -36,6 +36,7 @@ def paytm(request):
     MERCHANT_KEY = settings.PAYTM_MERCHANT_KEY
     MERCHANT_ID = settings.PAYTM_MERCHANT_ID
     CALLBACK_URL = settings.HOST_URL + settings.PAYTM_CALLBACK_URL
+    P_URL = settings.PAYTM_URL
     CUST_ID = user.email
     # Generating unique temporary ids
     order_id = Checksum.__id_generator__()
@@ -60,7 +61,7 @@ def paytm(request):
         param_dict = data_dict
         # user_pays = request.session['usersj']
         param_dict['CHECKSUMHASH'] = Checksum.generate_checksum(data_dict, MERCHANT_KEY)
-        return render(request,"payments/paytm.html",{'paytmdict':param_dict, 'user': user, 'title': 'Paytm'})
+        return render(request,"payments/paytm.html",{'paytmdict':param_dict, 'user': user, 'paytmurl' :P_URL, 'title': 'Paytm'})
     return HttpResponse("Bill Amount Could not find. ?bill_amount=10")
 
 
@@ -68,6 +69,7 @@ def paytm(request):
 @csrf_exempt
 def recipt(request):
     if request.method == "POST":
+        user=request.user
         data_dict = {}
         data_dict = dict(request.POST.items())
         Paytm_history.objects.create(user=request.user, **data_dict)
@@ -77,8 +79,10 @@ def recipt(request):
     # if Paytm_history.objects.filter(user=user, STATUS = 'TXN_SUCCESS'):
     #     status = True
     for key,value in data_dict.items():
-        if key == 'STATUS' and value == 'TXN_SUCCESS':
-            status = True
+        if key == 'STATUS':
+            user.user_details.status = value
+            if value == 'TXN_SUCCESS':
+                status = True
     return render(request, "payments/recipt.html", {"paytmr": data_dict, 'title': 'Recipt', "status": status})
 
 
