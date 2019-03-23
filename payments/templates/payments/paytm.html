@@ -36,7 +36,7 @@
             <p class="text-primary">Merchant Check Out Page.</p>
             <p class="text-primary">Please Do Not Refresh The Page.</p>
             <p class="text-primary">You are getting Redirected to the Payment Gateway.</p>
-          <form method="post" action="https://securegw-stage.paytm.in/theia/processTransaction" name="paytm">
+          <form method="post" action="{{ paytmurl }}" name="paytm">
             <table border="1">
               <tbody>
                 {% for key,value in paytmdict.items %}
