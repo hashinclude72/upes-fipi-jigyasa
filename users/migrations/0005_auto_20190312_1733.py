@@ -15,9 +15,9 @@ class Migration(migrations.Migration):
             name='contact_no',
             field=models.BigIntegerField(default=91),
         ),
-        # migrations.AddField(
-        #     model_name='user_details',
-        #     name='status',
-        #     field=models.CharField(default='Not Paid', max_length=12, verbose_name='STATUS'),
-        # ),
+        migrations.AddField(
+            model_name='user_details',
+            name='status',
+            field=models.CharField(default='Not Paid', max_length=12, verbose_name='STATUS'),
+        ),
     ]
