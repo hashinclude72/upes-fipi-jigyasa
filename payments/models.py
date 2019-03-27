@@ -2,7 +2,6 @@ from django.db import models
 from django.conf import settings
 # from django.contrib.auth.models import User
 from django.utils import timezone
-# Create your models here.
 
 class Paytm_history(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='rel_payment_paytm', on_delete=models.CASCADE, null=True, default=None)

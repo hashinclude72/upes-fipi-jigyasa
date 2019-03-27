@@ -32,19 +32,17 @@ def payments_home(request):
 @ensure_csrf_cookie
 def paytm(request):
     user = request.user
-    # request.session['usersj'] = user.id
     MERCHANT_KEY = settings.PAYTM_MERCHANT_KEY
     MERCHANT_ID = settings.PAYTM_MERCHANT_ID
     CALLBACK_URL = settings.HOST_URL + settings.PAYTM_CALLBACK_URL
     P_URL = settings.PAYTM_URL
     CUST_ID = user.email
-    # Generating unique temporary ids
     order_id = Checksum.__id_generator__()
 
     if user.user_details.team_count == 1:
-        bill_amount = 2000.00
+        bill_amount = 2053.00
     else:
-        bill_amount = 5500.00
+        bill_amount = 5615.00
 
 
     if bill_amount:
@@ -59,7 +57,6 @@ def paytm(request):
                     'CALLBACK_URL':CALLBACK_URL,
                 }
         param_dict = data_dict
-        # user_pays = request.session['usersj']
         param_dict['CHECKSUMHASH'] = Checksum.generate_checksum(data_dict, MERCHANT_KEY)
         return render(request,"payments/paytm.html",{'paytmdict':param_dict, 'user': user, 'paytmurl' :P_URL, 'title': 'Paytm'})
     return HttpResponse("Bill Amount Could not find. ?bill_amount=10")
@@ -74,10 +71,7 @@ def recipt(request):
         data_dict = dict(request.POST.items())
         Paytm_history.objects.create(user=request.user, **data_dict)
 
-    # user = request.user
     status = False
-    # if Paytm_history.objects.filter(user=user, STATUS = 'TXN_SUCCESS'):
-    #     status = True
     for key,value in data_dict.items():
         if key == 'STATUS':
             user.user_details.status = value
@@ -93,24 +87,9 @@ def response(request):
     if request.method == "POST":
         MERCHANT_KEY = settings.PAYTM_MERCHANT_KEY
         data_dict = {}
-
-        # data_dict = {
-        #             'CHECKSUMHASH':request.POST.get('CHECKSUMHASH'),
-        #             'ORDER_ID':request.POST.get('ORDER_ID'),
-        #             'MID':request.POST.get('MID'),
-        #             'TXN_AMOUNT': request.POST.get('TXN_AMOUNT'),
-        #             'CUST_ID':request.POST.get('CUST_ID'),
-        #             'INDUSTRY_TYPE_ID':request.POST.get('INDUSTRY_TYPE_ID'),
-        #             'WEBSITE': request.POST.get('WEBSITE'),
-        #             'CHANNEL_ID':request.POST.get('CHANNEL_ID'),
-        #             'CALLBACK_URL':request.POST.get('CALLBACK_URL'),
-        #             'user':request.POST.get('user')
-        #         }
         data_dict = dict(request.POST.items())
 
         verify = Checksum.verify_checksum(data_dict, MERCHANT_KEY, data_dict['CHECKSUMHASH'])
-        # for key in request.POST:
-        #     data_dict[key] = request.POST[key]
         if verify:
             for key in request.POST:
                 if key == "BANKTXNID" or key == "RESPCODE":
@@ -120,12 +99,8 @@ def response(request):
                         data_dict[key] = 0
                 elif key == "TXNAMOUNT":
                     data_dict[key] = float(request.POST[key])
-            # user = User.objects.get(id=request.user.id)
-            # user.paytm_history( **data_dict)
-            # user.paytm_history.save()
             # Paytm_history.objects.create(user=settings.USER, **data_dict)
             return render(request, "payments/response.html", {"paytm":data_dict, 'title': 'Confirm'})
-            #     return HttpResponse("some html here")
         else:
             return HttpResponse("checksum verify failed")
     return HttpResponse(status=200)

@@ -13,7 +13,6 @@ def register(request):
         form = UserRegisterForm(request.POST)
         user_details_form = UserDetails(request.POST)
         if form.is_valid() and user_details_form.is_valid():
-            # form.save()
             user = form.save()
             user.user_details.team_count = user_details_form.cleaned_data.get('team_count')
             user.user_details.contact_no = user_details_form.cleaned_data.get('contact_no')
