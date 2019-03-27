@@ -76,8 +76,8 @@ def recipt(request):
         if key == 'STATUS':
             user.user_details.status = value
             user.user_details.save()
-            if value == 'TXN_SUCCESS':
-                status = True
+            # if value == 'TXN_SUCCESS':
+            status = value
     return render(request, "payments/recipt.html", {"paytmr": data_dict, 'title': 'Recipt', "status": status})
 
 
