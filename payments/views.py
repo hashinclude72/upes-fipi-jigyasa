@@ -71,7 +71,7 @@ def recipt(request):
         data_dict = dict(request.POST.items())
         Paytm_history.objects.create(user=request.user, **data_dict)
 
-    status = False
+    status = 'TXN_FAILURE'
     for key,value in data_dict.items():
         if key == 'STATUS':
             user.user_details.status = value
