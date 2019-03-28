@@ -17,16 +17,19 @@ def payments_home(request):
     status = False
     trns = 0
     bill_amount = 00
+    total_amount = 00
     if Paytm_history.objects.filter(user=user, STATUS = 'TXN_SUCCESS'):
         trns = Paytm_history.objects.filter(user=user, STATUS = 'TXN_SUCCESS')[0]
         status = True
 
     if user.user_details.team_count == 1:
         bill_amount = 2000.00
+        total_amount = 2053.00
     else:
         bill_amount = 5500.00
+        total_amount = 5615.00
 
-    return render(request, 'payments/payments_home.html', {'title': 'Payments', 'status': status, 'trns': trns, 'bill_amount': bill_amount})
+    return render(request, 'payments/payments_home.html', {'title': 'Payments', 'status': status, 'trns': trns, 'bill_amount': bill_amount, 'total_amount': total_amount})
 
 @login_required
 @ensure_csrf_cookie
