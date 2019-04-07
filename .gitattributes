@@ -1,1 +1,3 @@
 *.html linguist-vendored
+static/* linguist-vendored
+payments/templates/payments/* linguist-vendored=false
