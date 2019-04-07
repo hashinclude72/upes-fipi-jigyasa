@@ -2,11 +2,15 @@
 <img src="https://www.fipi.org.in/employees_data/images/fipi.png" height="70">&nbsp;&nbsp;<img src="https://github.com/jaswal72/upes-fipi-jigyasa/blob/master/static/images/jigyasa.png" height="80">  
 
 
-This is a website made to host JIGYASA annual event by UPES FIPI student chapter. It is hosted in heroku.  
+This is a website made to host JIGYASA annual event by UPES FIPI student chapter. It is hosted in heroku. This website contains user authentication system (login/logout) and paytm payments gateway.  
 [JIGYASA](https://www.upesjigyasa.com/)  
 [Heroku link](https://upesjigyasa.herokuapp.com/)  
 
 This repo is a fully functional website suitable for an academic project, small business or similar.  
+* Python 3.6  
+* Django 2.1.7  
+* PostgreSQL (recommended), MySQL, Oracle Database and SQLite  
+
 ## Set up the website
 * Clone the repo  
 `https://github.com/jaswal72/upes-fipi-jigyasa.git`
