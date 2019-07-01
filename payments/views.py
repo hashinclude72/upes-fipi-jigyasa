@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.sessions.models import Session
-from .models import Paytm_history
+# from .models import Paytm_history
 
 from . import Checksum
 
