@@ -21,7 +21,7 @@ oauthlib==3.0.1
 pathlib2==2.3.3
 pexpect==4.6.0
 pickleshare==0.7.5
-Pillow==5.4.1
+Pillow==8.1.1
 prompt-toolkit==2.0.8
 psycopg2==2.7.7
 ptyprocess==0.6.0
